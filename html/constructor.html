@@ -5,8 +5,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ресторан - Конструктор</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/constructor.css">
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #f0f0f0;
+            color: #252525;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-buttons button {
+            background-color: transparent;
+            color: #252525;
+            border: 1px solid #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .header-buttons button:hover {
+            background-color: #e6f0fa;
+        }
+
+        .cart-count {
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .constructor-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .dish-image {
+            flex: 0 0 250px;
+        }
+
+        .dish-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .dish-options {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .options-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .option-column {
+            flex: 1;
+        }
+
+        .option-group {
+            margin-bottom: 15px;
+        }
+
+        .option-group h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            padding-bottom: 5px;
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .option label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .option input[type="checkbox"],
+        .option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantity button {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .quantity button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quantity-value {
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .sauce-options {
+            padding: 15px 0;
+        }
+
+        #save-dish {
+            background-color: #252525;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        #save-dish:hover {
+            background-color: #333;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -19,93 +189,122 @@
 <main>
     <h1>Конструктор Второго</h1>
     <div class="constructor-container">
-        <div class="constructor-image">
+        <div class="dish-image">
             <img src="../images/constructor-dish.jpg" alt="Пример блюда">
         </div>
-        <div class="constructor-form">
-            <h2>Гарнир</h2>
-            <div class="option">
-                <label><input type="checkbox" name="garnish" value="пюре"> Пюре</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
+        <div class="dish-options">
+            <div class="options-row">
+                <div class="option-column">
+                    <div class="option-group">
+                        <h2>Гарнир</h2>
+                        <div class="option">
+                            <label><input type="checkbox" name="garnish" value="пюре"> Пюре</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <label><input type="checkbox" name="garnish" value="рис"> Рис</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <label><input type="checkbox" name="garnish" value="гречка"> Гречка</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <label><input type="checkbox" name="garnish" value="макароны"> Макароны</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-column">
+                    <div class="option-group">
+                        <h2>Основное</h2>
+                        <div class="option">
+                            <label><input type="checkbox" name="main" value="бризоль"> Бризоль</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <label><input type="checkbox" name="main" value="бифштекс"> Бифштекс</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <label><input type="checkbox" name="main" value="мясо по французски"> Мясо по-французски</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <label><input type="checkbox" name="main" value="курица с ананасами"> Курица с ананасами</label>
+                            <div class="quantity">
+                                <button class="quantity-decrease">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-increase">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="option">
-                <label><input type="checkbox" name="garnish" value="рис"> Рис</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
+            <div class="sauce-options">
+                <div class="option-group">
+                    <h2>Соус, масло?</h2>
+                    <div class="option">
+                        <label><input type="radio" name="sauce" value="соус"> Соус!</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="radio" name="sauce" value="масло"> Масло!</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="radio" name="sauce" value="нет" checked> Нет, спасибо!</label>
+                    </div>
                 </div>
             </div>
-            <div class="option">
-                <label><input type="checkbox" name="garnish" value="гречка"> Гречка</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
-                </div>
-            </div>
-            <div class="option">
-                <label><input type="checkbox" name="garnish" value="макароны"> Макароны</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
-                </div>
-            </div>
-
-            <h2>Основа</h2>
-            <div class="option">
-                <label><input type="checkbox" name="main" value="ежики"> Ежики</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
-                </div>
-            </div>
-            <div class="option">
-                <label><input type="checkbox" name="main" value="биточек"> Биточек</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
-                </div>
-            </div>
-            <div class="option">
-                <label><input type="checkbox" name="main" value="мясо по французски"> Мясо по-французски</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
-                </div>
-            </div>
-            <div class="option">
-                <label><input type="checkbox" name="main" value="курица с ананасами"> Курица с ананасами</label>
-                <div class="quantity">
-                    <button class="quantity-decrease">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-increase">+</button>
-                </div>
-            </div>
-
-            <h2>Соус, масло?</h2>
-            <div class="option">
-                <label><input type="radio" name="sauce" value="соус"> Соус!</label>
-            </div>
-            <div class="option">
-                <label><input type="radio" name="sauce" value="масло"> Масло!</label>
-            </div>
-            <div class="option">
-                <label><input type="radio" name="sauce" value="нет" checked> Нет, спасибо!</label>
-            </div>
-
             <button id="save-dish">Сохранить блюдо</button>
         </div>
     </div>
 </main>
-<script src="../js/constructor.js"></script>
+<script>
+    // Обработчики для кнопок количества
+    document.querySelectorAll('.quantity-increase').forEach(button => {
+        button.addEventListener('click', function() {
+            const valueElement = this.parentElement.querySelector('.quantity-value');
+            valueElement.textContent = parseInt(valueElement.textContent) + 1;
+        });
+    });
+
+    document.querySelectorAll('.quantity-decrease').forEach(button => {
+        button.addEventListener('click', function() {
+            const valueElement = this.parentElement.querySelector('.quantity-value');
+            const currentValue = parseInt(valueElement.textContent);
+            if (currentValue > 1) {
+                valueElement.textContent = currentValue - 1;
+            }
+        });
+    });
+</script>
 </body>
 </html>
