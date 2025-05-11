@@ -1,0 +1,220 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.cart-button, .profile-button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-button .cart-count-container {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+.cart-count {
+    margin: 0;
+    padding: 0;
+}
+
+.cart-button:hover, .profile-button:hover {
+    opacity: 0.9;
+}
+
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.constructor-container {
+    display: flex;
+    gap: 30px;
+}
+
+.dish-image {
+    flex: 0 0 250px;
+}
+
+.dish-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.dish-options {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.options-row {
+    display: flex;
+    gap: 20px;
+}
+
+.option-column {
+    flex: 1;
+}
+
+.option-group {
+    margin-bottom: 15px;
+}
+
+.option-group h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    padding-bottom: 5px;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.option label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.option input[type="checkbox"],
+.option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-value {
+    background-color: #d3d3d3;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 1em;
+    min-width: 30px;
+    text-align: center;
+}
+
+.quantity-controls {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 4px;
+    width: 30px;
+}
+
+.quantity-controls button {
+    background-color: #ffffff;
+    border: none;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    width: 30px;
+    text-align: center;
+}
+
+.quantity-controls button:hover {
+    background-color: #e0e0e0;
+}
+
+.sauce-options {
+    padding: 15px 0;
+}
+
+#save-dish {
+    background-color: #252525;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+#save-dish:hover {
+    background-color: #333;
+}
+
+footer {
+    background-color: #2f2f2f;
+    color: #ffffff;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+}
+
+footer .footer-left img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+footer .footer-left {
+    display: flex;
+    align-items: center;
+}
+
+footer .footer-right {
+    max-width: 300px;
+    text-align: right;
+    margin-right: 40px;
+}
