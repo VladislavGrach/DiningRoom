@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Борщ",
+    "price": 120,
+    "image": "../images/soups/borsh.png"
+  },
+  {
+    "name": "Солянка",
+    "price": 150,
+    "image": "../images/soups/solyanka.png"
+  },
+  {
+    "name": "Щи",
+    "price": 110,
+    "image": "../images/soups/shchi.png"
+  },
+  {
+    "name": "Куриный суп",
+    "price": 100,
+    "image": "../images/soups/chiken.png"
+  },
+  {
+    "name": "Грибной суп",
+    "price": 100,
+    "image": "../images/soups/mushroom.png"
+  }
+]
