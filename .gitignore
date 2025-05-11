@@ -1,4 +1,4 @@
-# WebStorm
+﻿# WebStorm
 .idea/
 
 # Node.js
@@ -16,3 +16,5 @@ build/
 
 # Локальные настройки
 .env
+
+.vs

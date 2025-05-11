@@ -1,21 +1,34 @@
 const categoryParam = new URLSearchParams(window.location.search).get('category');
 
-function capitalize(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
+const dictionary = {
+    "soups": "Супы",
+    "snacks": "Закуски",
+    "bakery": "Выпечка",
+    "drinks": "Напитки",
+    "other": "Другое",
 }
 
 async function loadDishes() {
     try {
-        const response = await fetch(`../data/${categoryParam}.json`);
+        const path = `../data/${categoryParam}.json`;
+        console.log('Загрузка:', path);
+
+        const response = await fetch(path);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const dishes = await response.json();
 
-        document.getElementById('category-title').textContent = capitalize(categoryParam);
+        document.getElementById('category-title').textContent = dictionary[categoryParam];
         displayDishes(dishes);
     } catch (err) {
         console.error('Ошибка загрузки блюд:', err);
         document.getElementById('category-title').textContent = 'Категория не найдена';
     }
 }
+
 
 function displayDishes(dishes) {
     const container = document.getElementById('dishes-container');
