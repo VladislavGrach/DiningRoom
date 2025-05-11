@@ -35,4 +35,16 @@ function displayCategories(categories) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadCategories);
+function updateCartCount() {
+    let cartCount = localStorage.getItem('cartCount');
+    if (!cartCount) {
+        cartCount = 0;
+        localStorage.setItem('cartCount', cartCount);
+    }
+    document.getElementById('cart-count').textContent = cartCount;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadCategories();
+    updateCartCount();
+});

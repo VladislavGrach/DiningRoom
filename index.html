@@ -11,7 +11,12 @@
 <header>
   <img src="images/logo.png" alt="Логотип ресторана" class="logo">
   <div class="header-buttons">
-    <button onclick="window.location.href='html/cart.html'" class="cart-button">Корзина <span class="cart-count">1</span></button>
+    <button onclick="window.location.href='html/cart.html'" class="cart-button">
+       <span class="cart-count-container">
+          <span class="cart-count" id="cart-count">1</span>
+       </span>
+      Корзина
+    </button>
     <button onclick="window.location.href='html/profile.html'" class="profile-button">Профиль</button>
   </div>
 </header>
@@ -19,6 +24,14 @@
   <h1>Столовая 7 Корпуса</h1>
   <div id="categories-container" class="categories-grid"></div>
 </main>
+<footer>
+  <div class="footer-left">
+    <img src="images/logoFooter.png" alt="Логотип" class="footer-logo">
+  </div>
+  <div class="footer-right">
+    г. Ярославль, ул. Союзная, д. 144
+  </div>
+</footer>
 <script src="js/main.js"></script>
 </body>
 </html>
