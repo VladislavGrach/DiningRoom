@@ -63,6 +63,7 @@ function saveDish() {
     alert('Блюдо сохранено в корзину!');
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeQuantities();
     document.getElementById('save-dish').addEventListener('click', saveDish);
