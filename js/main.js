@@ -8,11 +8,12 @@ class Category {
 
 function loadCategories() {
     const categories = [
-        new Category(1, "Супы", "html/soups.html"),
+        new Category(1, "Супы", "html/dish.html?category=soups"),
         new Category(2, "Второе", "html/constructor.html"),
-        new Category(3, "Закуски", "html/snacks.html"),
-        new Category(4, "Напитки", "html/drinks.html"),
-        new Category(5, "Другое", "html/other.html")
+        new Category(3, "Закуски", "html/dish.html?category=snacks"),
+        new Category(4, "Выпечка", "html/dish.html?category=bakery"),
+        new Category(5, "Напитки", "html/dish.html?category=drinks"),
+        new Category(6, "Другое", "html/dish.html?category=other"),
     ];
     displayCategories(categories);
 }
@@ -24,7 +25,7 @@ function displayCategories(categories) {
         const tile = document.createElement('div');
         tile.className = 'category-tile';
         tile.innerHTML = `
-            <img src="images/${category.name.toLowerCase()}.jpg" alt="${category.name}">
+            <img src="images/categories/${category.name.toLowerCase()}.png" alt="${category.name}">
             <p>${category.name}</p>
         `;
         tile.addEventListener('click', () => {
