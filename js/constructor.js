@@ -7,11 +7,18 @@ class CustomDish {
     }
 }
 
+function updateCartCount() {
+    const customDishes = JSON.parse(localStorage.getItem('customDishes') || '[]');
+    const totalItems = customDishes.length;
+    document.getElementById('cart-count').textContent = totalItems;
+}
+
 function initializeQuantities() {
     document.querySelectorAll('.option').forEach(option => {
-        const decreaseBtn = option.querySelector('.quantity-decrease');
-        const increaseBtn = option.querySelector('.quantity-increase');
-        const quantityValue = option.querySelector('.quantity-value');
+        const quantityContainer = option.querySelector('.quantity-container');
+        const decreaseBtn = quantityContainer.querySelector('.quantity-decrease');
+        const increaseBtn = quantityContainer.querySelector('.quantity-increase');
+        const quantityValue = quantityContainer.querySelector('.quantity-value');
 
         decreaseBtn.addEventListener('click', () => {
             let value = parseInt(quantityValue.textContent);
@@ -51,10 +58,14 @@ function saveDish() {
     const customDishes = JSON.parse(localStorage.getItem('customDishes') || '[]');
     customDishes.push(dish);
     localStorage.setItem('customDishes', JSON.stringify(customDishes));
-    alert('Блюдо сохранено!');
+
+    updateCartCount();
+    alert('Блюдо сохранено в корзину!');
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeQuantities();
     document.getElementById('save-dish').addEventListener('click', saveDish);
+    updateCartCount();
 });

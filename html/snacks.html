@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ресторан - Конструктор</title>
+    <title>Ресторан - Конструктор Салатов</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/constructor.css">
+    <link rel="stylesheet" href="../css/snacks.css">
 </head>
 <body>
 <header>
@@ -21,18 +21,18 @@
     </div>
 </header>
 <main>
-    <h1>Конструктор Второго</h1>
+    <h1>Конструктор Салатов</h1>
     <div class="constructor-container">
         <div class="dish-image">
-            <img src="/images/secondCourse.png" alt="Пример блюда">
+            <img src="/images/snacks.png" alt="Пример салата">
         </div>
         <div class="dish-options">
             <div class="options-row">
                 <div class="option-column">
                     <div class="option-group">
-                        <h2>Гарнир</h2>
+                        <h2>Выберите салаты</h2>
                         <div class="option">
-                            <label><input type="checkbox" name="garnish" value="пюре"> Пюре</label>
+                            <label><input type="checkbox" name="salad" value="цезарь"> Цезарь</label>
                             <div class="quantity-container">
                                 <span class="quantity-value">1</span>
                                 <div class="quantity-controls">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="option">
-                            <label><input type="checkbox" name="garnish" value="рис"> Рис</label>
+                            <label><input type="checkbox" name="salad" value="американка"> Американка</label>
                             <div class="quantity-container">
                                 <span class="quantity-value">1</span>
                                 <div class="quantity-controls">
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="option">
-                            <label><input type="checkbox" name="garnish" value="гречка"> Гречка</label>
+                            <label><input type="checkbox" name="salad" value="школьник"> Школьник</label>
                             <div class="quantity-container">
                                 <span class="quantity-value">1</span>
                                 <div class="quantity-controls">
@@ -62,22 +62,7 @@
                             </div>
                         </div>
                         <div class="option">
-                            <label><input type="checkbox" name="garnish" value="макароны"> Макароны</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="option-column">
-                    <div class="option-group">
-                        <h2>Основное</h2>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="бризоль"> Бризоль</label>
+                            <label><input type="checkbox" name="salad" value="ералаш"> Ералаш</label>
                             <div class="quantity-container">
                                 <span class="quantity-value">1</span>
                                 <div class="quantity-controls">
@@ -87,27 +72,7 @@
                             </div>
                         </div>
                         <div class="option">
-                            <label><input type="checkbox" name="main" value="бифштекс"> Бифштекс</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="мясо по французски"> Мясо по-французски</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="курица с ананасами"> Курица с ананасами</label>
+                            <label><input type="checkbox" name="salad" value="оливье"> Оливье</label>
                             <div class="quantity-container">
                                 <span class="quantity-value">1</span>
                                 <div class="quantity-controls">
@@ -121,19 +86,16 @@
             </div>
             <div class="sauce-options">
                 <div class="option-group">
-                    <h2>Соус, масло?</h2>
-                    <div class="option">
-                        <label><input type="radio" name="sauce" value="соус"> Соус!</label>
-                    </div>
+                    <h2>Заправка</h2>
                     <div class="option">
                         <label><input type="radio" name="sauce" value="масло"> Масло!</label>
                     </div>
                     <div class="option">
-                        <label><input type="radio" name="sauce" value="нет" checked> Нет, спасибо!</label>
+                        <label><input type="radio" name="sauce" value="нет" checked> Без заправки!</label>
                     </div>
                 </div>
             </div>
-            <button id="save-dish">Сохранить блюдо</button>
+            <button id="save-dish">Сохранить салат</button>
         </div>
     </div>
 </main>
@@ -145,6 +107,6 @@
         г. Ярославль, ул. Союзная, д. 144
     </div>
 </footer>
-<script src="../js/constructor.js"></script>
+<script src="../js/snacks.js"></script>
 </body>
 </html>

@@ -151,7 +151,7 @@ h1 {
     flex-direction: column;
     border: 1px solid #000;
     border-radius: 4px;
-    width: 30px; /* Увеличил ширину контейнера с 20px до 30px */
+    width: 30px;
 }
 
 .quantity-controls button {
@@ -160,7 +160,7 @@ h1 {
     padding: 2px 8px;
     cursor: pointer;
     font-size: 0.9em;
-    width: 30px; /* Увеличил ширину кнопок с 20px до 30px */
+    width: 30px;
     text-align: center;
 }
 
