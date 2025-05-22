@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Запеканка",
+    "price": 45,
+    "image": "../images/other/casserole.png",
+    "description": ""
+  },
+  {
+    "name": "Сельдь с луком",
+    "price": 54,
+    "image": "../images/other/herring_onion.png",
+    "description": ""
+  }
+]
