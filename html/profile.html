@@ -1,77 +1,67 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Профиль</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/main.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История заказов</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <header>
-    <img src="../images/logo.png" alt="Логотип ресторана" onclick="window.location.href='../index.html'" class="logo" />
+    <img src="../images/logo.png" alt="Логотип ресторана" class="logo">
     <div class="header-buttons">
         <button onclick="window.location.href='cart.html'" class="cart-button">
-      <span class="cart-count-container">
-        <span class="cart-count" id="cart-count">0</span>
-      </span>
+              <span class="cart-count-container">
+                <span class="cart-count" id="cart-count">0</span>
+              </span>
             Корзина
         </button>
-        <button onclick="window.location.href='profile.html'" class="profile-button">Профиль</button>
+        <button id="profile-btn" class="profile-button"></button>
     </div>
 </header>
-
 <div class="main-section">
     <div class="left-section">
-        <div class="avatar-container">
-            <img src="../images/profile.png" alt="Profile" class="profile-img">
-            <button class="cng-photo">Обновить аватар</button>
+        <img src="../images/profile.png" alt="Profile" class="profile-img">
+        <div class="form-group">
+            <button>Обновить аватар</button>
         </div>
     </div>
-
     <div class="middle-section">
         <div class="form-group">
             <label>Псевдоним</label>
             <div class="input-wrapper">
-                <input type="text" />
+                <input type="text">
                 <button class="edit-btn">✏️</button>
             </div>
         </div>
         <div class="form-group">
             <label>Пароль</label>
             <div class="input-wrapper">
-                <input type="password" />
+                <input type="password">
                 <button class="edit-btn">✏️</button>
             </div>
         </div>
         <div class="form-group">
             <label>Повторите пароль</label>
             <div class="input-wrapper">
-                <input type="password" />
-                <button class="confirm-btn">✔️</button>
+                <input type="password">
+                <button class="edit-btn">✏️</button>
             </div>
         </div>
-    </div>
-
-    <div class="right-section">
-        <div class="history-title">История заказов</div>
-        <div class="history-content">
-            <p>Заказ #1 01.01.1970 00:00:00<br />Итог: 300 руб.</p>
-            <p>Заказ #2 01.01.1970 00:00:01<br />Итог: 50 руб.</p>
-            <p>Заказ #3 01.01.1970 00:00:02<br />Итог: 100 руб.</p>
+        <div class="checkbox-group">
+            <input type="checkbox" checked>
+        </div>
+        <div class="form-group">
+            <button class="logout-btn" onclick="logoutUser()">Выход</button>
         </div>
     </div>
+    <div class="right-section">
+        <div class="history-title">История заказов</div>
+        <div class="history-content"></div>
+    </div>
 </div>
-
-<footer>
-    <div class="footer-left">
-        <img src="../images/logo.png" alt="Логотип" class="footer-logo" />
-    </div>
-    <div class="footer-right">
-        г. Ярославль, ул. Союзная, д. 144
-    </div>
-</footer>
-
+<script src="../js/auth.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>

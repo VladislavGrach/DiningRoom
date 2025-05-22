@@ -87,6 +87,11 @@ function loadOrderHistory() {
     });
 }
 
+function logoutUser() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+}
+
 // Загружаем историю при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     loadOrderHistory();

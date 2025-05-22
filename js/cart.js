@@ -56,4 +56,8 @@ function confirmOrder() {
 }
 
 // Загрузка корзины при открытии страницы
-document.addEventListener('DOMContentLoaded', loadCart);
+document.addEventListener('DOMContentLoaded', () => {
+    if (checkAuth()) {
+        loadCart();
+    }
+});

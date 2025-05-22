@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вход</title>
+  <title>Регистрация</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
 </head>
@@ -11,8 +11,13 @@
 <header>
   <img src="../images/logo.png" alt="Логотип ресторана" class="logo">
   <div class="header-buttons">
-    <button onclick="window.location.href='cart.html'" class="cart-button">Корзина <span class="cart-count">0</span></button>
-    <button onclick="window.location.href='register.html'" class="profile-button">Регистрация</button>
+    <button onclick="window.location.href='cart.html'" class="cart-button">
+              <span class="cart-count-container">
+                <span class="cart-count" id="cart-count">0</span>
+              </span>
+      Корзина
+    </button>
+    <button id="profile-btn" class="profile-button"></button>
   </div>
 </header>
 <main>
@@ -28,7 +33,7 @@
   <div class="form-group">
     <button onclick="loginUser()">Войти</button>
   </div>
-  <p>Нет аккаунта? <a href="register.html">Зарегистрируйтесь</a></p>
+  <p>Уже есть аккаунт? <a href="register.html">Войдите</a></p>
 </main>
 <script src="../js/auth.js"></script>
 </body>
