@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Булочка по-французски",
+    "price": 22,
+    "image": "../images/bakery/french.png",
+    "description": ""
+  },
+  {
+    "name": "Пирожок жаренный с вишней",
+    "price": 25,
+    "image": "../images/bakery/cherry.png",
+    "description": ""
+  },
+  {
+    "name": "Пирожок жаренный с мясом",
+    "price": 25,
+    "image": "../images/bakery/meat.png",
+    "description": ""
+  },
+  {
+    "name": "Пирожок c яйцом и луком",
+    "price": 19,
+    "image": "../images/bakery/cherry.png",
+    "description": ""
+  },
+  {
+    "name": "Хачапури",
+    "price": 38,
+    "image": "../images/bakery/hachapuri.png",
+    "description": ""
+  },
+  {
+    "name": "Пицца школьная",
+    "price": 38,
+    "image": "../images/bakery/pizza.png",
+    "description": ""
+  },
+  {
+    "name": "Сосиска в тесте",
+    "price": 35,
+    "image": "../images/bakery/sausage.png",
+    "description": ""
+  }
+]

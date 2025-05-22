@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Чай с лимоном",
+    "price": 4,
+    "image": "../images/drinks/lemon_tea.png",
+    "description": ""
+  },
+  {
+    "name": "Напиток вишнёвый",
+    "price": 14,
+    "image": "../images/drinks/cherry_drink.png",
+    "description": ""
+  },
+  {
+    "name": "Напиток яблочный",
+    "price": 14,
+    "image": "../images/drinks/apple_drink.png",
+    "description": ""
+  },
+  {
+    "name": "Яблочный сок 1л",
+    "price": 79,
+    "image": "../images/drink/apple_juice.png",
+    "description": ""
+  },
+  {
+    "name": "Вода бутилированная негазированная",
+    "price": 34,
+    "image": "../images/drink/apple_juice.png",
+    "description": ""
+  },
+  {
+    "name": "Вода бутилированная газированная",
+    "price": 34,
+    "image": "../images/drink/apple_juice.png",
+    "description": ""
+  }
+]

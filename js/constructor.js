@@ -22,7 +22,7 @@ function initializeQuantities() {
 
         decreaseBtn.addEventListener('click', () => {
             let value = parseInt(quantityValue.textContent);
-            if (value > 1) {
+            if (value > 0) {
                 quantityValue.textContent = value - 1;
             }
         });

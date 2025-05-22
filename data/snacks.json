@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Оливье",
+    "price": 22,
+    "image": "../images/bakery/olivier.png",
+    "description": ""
+  },
+  {
+    "name": "Цезарь",
+    "price": 48,
+    "image": "../images/bakery/caesar.png",
+    "description": ""
+  },
+  {
+    "name": "Американка",
+    "price": 25,
+    "image": "../images/bakery/american.png",
+    "description": ""
+  },
+  {
+    "name": "Школьник",
+    "price": 19,
+    "image": "../images/bakery/schoolboy.png",
+    "description": ""
+  },
+  {
+    "name": "Селёдка под шубой",
+    "price": 38,
+    "image": "../images/bakery/herring_coat.png",
+    "description": ""
+  }
+]
