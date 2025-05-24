@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Меню</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css" />
 </head>
 <body>
@@ -23,9 +24,19 @@
   <h1 id="category-title">Загрузка</h1>
   <div id="dishes-container" class="categories-grid"></div>
 </main>
+<div id="confirm-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">×</span>
+    <p>Хотите добавить этот товар в корзину?</p>
+    <div class="modal-buttons">
+      <button id="modal-confirm-btn">Да</button>
+      <button id="modal-cancel-btn">Нет</button>
+    </div>
+  </div>
+</div>
 <footer>
   <div class="footer-left">
-    <img src="../images/logo.png" alt="Логотип" class="footer-logo" />
+    <img src="../images/logoFooter.png" alt="Логотип" class="footer-logo">
   </div>
   <div class="footer-right">
     г. Ярославль, ул. Союзная, д. 144

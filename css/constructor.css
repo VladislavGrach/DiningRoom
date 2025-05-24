@@ -162,6 +162,8 @@ h1 {
     font-size: 0.9em;
     width: 30px; /* Увеличил ширину кнопок с 20px до 30px */
     text-align: center;
+    color: #000000;
+    transition: all 0.2s ease;
 }
 
 .quantity-controls button:hover {

@@ -20,7 +20,6 @@ async function loadDishes() {
         }
 
         const dishes = await response.json();
-
         document.getElementById('category-title').textContent = dictionary[categoryParam];
         displayDishes(dishes);
     } catch (err) {
@@ -28,7 +27,6 @@ async function loadDishes() {
         document.getElementById('category-title').textContent = 'Категория не найдена';
     }
 }
-
 
 function displayDishes(dishes) {
     const container = document.getElementById('dishes-container');
@@ -41,8 +39,59 @@ function displayDishes(dishes) {
             <p class="dish-name">${dish.name}</p>
             <p class="dish-price">${dish.price} руб.</p>
         `;
+        card.addEventListener('click', () => showConfirmModal(dish));
         container.appendChild(card);
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadDishes);
+function showConfirmModal(dish) {
+    const modal = document.getElementById('confirm-modal');
+    const confirmBtn = document.getElementById('modal-confirm-btn');
+    const cancelBtn = document.getElementById('modal-cancel-btn');
+    const closeBtn = document.querySelector('.modal-close');
+
+    modal.style.display = 'block';
+
+    // Обработчик для кнопки "Да"
+    const confirmHandler = () => {
+        addToCart(dish);
+        modal.style.display = 'none';
+        confirmBtn.removeEventListener('click', confirmHandler);
+    };
+
+    // Обработчик для кнопки "Нет" и крестика
+    const cancelHandler = () => {
+        modal.style.display = 'none';
+        confirmBtn.removeEventListener('click', confirmHandler);
+    };
+
+    confirmBtn.addEventListener('click', confirmHandler);
+    cancelBtn.addEventListener('click', cancelHandler);
+    closeBtn.addEventListener('click', cancelHandler);
+
+    // Закрытие модального окна при клике вне контента
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            confirmBtn.removeEventListener('click', confirmHandler);
+        }
+    };
+}
+
+function addToCart(dish) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    cartItems.push(dish);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+    alert(`${dish.name} добавлен в корзину!`);
+}
+
+function updateCartCount() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    document.getElementById('cart-count').textContent = cartItems.length;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadDishes();
+    updateCartCount();
+});

@@ -1,0 +1,166 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    position: relative;
+    text-align: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#modal-confirm-btn,
+#modal-cancel-btn,
+#remove-confirm-btn,
+#remove-cancel-btn {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#modal-confirm-btn:hover,
+#modal-cancel-btn:hover,
+#remove-confirm-btn:hover,
+#remove-cancel-btn:hover {
+    opacity: 0.9;
+}
+
+#modal-cancel-btn,
+#remove-cancel-btn {
+    background-color: #ff0000;
+}
+
+/* Основные стили для корзины */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1 0 auto; /* Растягивается для футера */
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+}
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+    width: 800px; /* Адаптируем ширину под main */
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.cart-summary {
+    padding: 20px;
+    margin-top: 30px;
+    text-align: right;
+}
+
+#confirm-order {
+    background-color: #28a745;
+    color: white;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+#confirm-order:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#cart-total {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+/* Дополнительные стили для корзины */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cart-item div {
+    flex: 1;
+}
+
+.remove-item {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.remove-item:hover {
+    background-color: #c82333;
+}
+
+footer {
+    position: relative !important; /* Переопределяем fixed из main.css с приоритетом */
+    width: 100%;
+    flex-shrink: 0;
+    background-color: #2f2f2f;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    bottom: auto !important; /* Убираем фиксированное положение снизу */
+}
+
+/* Настройка для правильного расположения футера */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important; /* Минимальная высота на весь экран */
+    overflow-x: hidden !important; /* Убираем горизонтальную прокрутку */
+}
