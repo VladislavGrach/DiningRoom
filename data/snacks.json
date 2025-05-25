@@ -2,31 +2,37 @@
   {
     "name": "Оливье",
     "price": 22,
-    "image": "../images/bakery/olivier.png",
+    "image": "../images/snacks/olivier.png",
     "description": ""
   },
   {
     "name": "Цезарь",
     "price": 48,
-    "image": "../images/bakery/caesar.png",
+    "image": "../images/snacks/caesar.png",
     "description": ""
   },
   {
     "name": "Американка",
     "price": 25,
-    "image": "../images/bakery/american.png",
+    "image": "../images/snacks/american.png",
     "description": ""
   },
   {
     "name": "Школьник",
     "price": 19,
-    "image": "../images/bakery/schoolboy.png",
+    "image": "../images/snacks/schoolboy.png",
+    "description": ""
+  },
+  {
+    "name": "Салат крабовый",
+    "price": 24,
+    "image": "../images/snacks/crab.png",
     "description": ""
   },
   {
     "name": "Селёдка под шубой",
     "price": 38,
-    "image": "../images/bakery/herring_coat.png",
+    "image": "../images/snacks/herring_coat.png",
     "description": ""
   }
 ]

@@ -20,19 +20,19 @@
   {
     "name": "Яблочный сок 1л",
     "price": 79,
-    "image": "../images/drink/apple_juice.png",
+    "image": "../images/drinks/apple_juice.png",
     "description": ""
   },
   {
     "name": "Вода бутилированная негазированная",
     "price": 34,
-    "image": "../images/drink/apple_juice.png",
+    "image": "../images/drinks/water_bottle.png",
     "description": ""
   },
   {
     "name": "Вода бутилированная газированная",
     "price": 34,
-    "image": "../images/drink/apple_juice.png",
+    "image": "../images/drinks/water_bottle_gaz.png",
     "description": ""
   }
 ]
