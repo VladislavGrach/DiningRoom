@@ -7,22 +7,27 @@ function loadCart() {
 
     cartItems.innerHTML = '';
     cart.forEach((item, index) => {
+        const quantity = item.quantity || 1; // Если quantity отсутствует, считаем как 1
+        const itemTotalPrice = parseInt(item.price) * quantity;
+        total += itemTotalPrice;
+
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <div>
                 <p class="dish-name">${item.name}</p>
-                <p class="dish-price">${item.price} руб.</p>
+                <p class="dish-price">${item.price} руб. x ${quantity} = ${itemTotalPrice} руб.</p>
             </div>
             <button class="remove-item" data-index="${index}">Удалить</button>
         `;
         cartItems.appendChild(cartItem);
-        total += parseInt(item.price);
     });
 
     document.getElementById('cart-total').textContent = total;
-    cartCount.textContent = cart.length;
+    // Считаем общее количество порций
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    cartCount.textContent = totalItems;
 
     // Обработчики для кнопок удаления
     document.querySelectorAll('.remove-item').forEach(button => {
@@ -95,7 +100,8 @@ function confirmOrder() {
         return;
     }
 
-    const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
+    // Учитываем количество порций при расчете итога
+    const total = cart.reduce((sum, item) => sum + parseInt(item.price) * (item.quantity || 1), 0);
     const orderId = `Заказ #${Date.now()}`;
     const date = new Date().toLocaleString();
 

@@ -50,11 +50,48 @@ function showConfirmModal(dish) {
     const cancelBtn = document.getElementById('modal-cancel-btn');
     const closeBtn = document.querySelector('.modal-close');
 
+    // Заполняем модальное окно данными о товаре
+    const dishImage = document.getElementById('modal-dish-image');
+    const dishName = document.getElementById('modal-dish-name');
+    const dishPrice = document.getElementById('modal-dish-price');
+    const quantityValue = document.getElementById('modal-quantity');
+    const increaseBtn = modal.querySelector('.quantity-increase');
+    const decreaseBtn = modal.querySelector('.quantity-decrease');
+
+    dishImage.src = dish.image;
+    dishImage.alt = dish.name;
+    dishName.textContent = dish.name;
+    dishPrice.textContent = `${dish.price} руб.`;
+    quantityValue.textContent = '1'; // Начальное количество
+
+    // Обработчики для кнопок увеличения/уменьшения количества
+    const updateQuantity = () => {
+        let value = parseInt(quantityValue.textContent);
+        if (value < 1) {
+            value = 1;
+            quantityValue.textContent = value;
+        }
+        return value;
+    };
+
+    increaseBtn.onclick = () => {
+        let value = parseInt(quantityValue.textContent);
+        quantityValue.textContent = value + 1;
+    };
+
+    decreaseBtn.onclick = () => {
+        let value = parseInt(quantityValue.textContent);
+        if (value > 1) {
+            quantityValue.textContent = value - 1;
+        }
+    };
+
     modal.style.display = 'block';
 
     // Обработчик для кнопки "Да"
     const confirmHandler = () => {
-        addToCart(dish);
+        const quantity = updateQuantity();
+        addToCart(dish, quantity);
         modal.style.display = 'none';
         confirmBtn.removeEventListener('click', confirmHandler);
     };
@@ -78,17 +115,21 @@ function showConfirmModal(dish) {
     };
 }
 
-function addToCart(dish) {
+function addToCart(dish, quantity) {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    cartItems.push(dish);
+    // Создаем копию объекта блюда и добавляем количество
+    const dishWithQuantity = { ...dish, quantity };
+    cartItems.push(dishWithQuantity);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     updateCartCount();
-    alert(`${dish.name} добавлен в корзину!`);
+    alert(`${dish.name} (${quantity} порций) добавлен в корзину!`);
 }
 
 function updateCartCount() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    document.getElementById('cart-count').textContent = cartItems.length;
+    // Суммируем общее количество порций
+    const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    document.getElementById('cart-count').textContent = totalItems;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
