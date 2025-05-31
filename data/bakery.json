@@ -7,25 +7,25 @@
   },
   {
     "name": "Пирожок жаренный с вишней",
-    "price": 25,
+    "price": 29,
     "image": "../images/bakery/cherry.png",
     "description": ""
   },
   {
     "name": "Пирожок жаренный с мясом",
-    "price": 25,
+    "price": 30,
     "image": "../images/bakery/meat.png",
     "description": ""
   },
   {
     "name": "Пирожок c яйцом и луком",
-    "price": 19,
+    "price": 28,
     "image": "../images/bakery/onion_egg.png",
     "description": ""
   },
   {
     "name": "Хачапури",
-    "price": 38,
+    "price": 40,
     "image": "../images/bakery/hachapuri.png",
     "description": ""
   },

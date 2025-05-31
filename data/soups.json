@@ -1,31 +1,31 @@
 [
   {
     "name": "Борщ",
-    "price": 120,
+    "price": 40,
     "image": "../images/soups/borsh.png",
     "description": ""
   },
   {
     "name": "Солянка",
-    "price": 150,
+    "price": 45,
     "image": "../images/soups/solyanka.png",
     "description": ""
   },
   {
     "name": "Щи",
-    "price": 110,
+    "price": 45,
     "image": "../images/soups/shchi.png",
     "description": ""
   },
   {
     "name": "Куриный суп",
-    "price": 100,
+    "price": 45,
     "image": "../images/soups/chiken.png",
     "description": ""
   },
   {
     "name": "Грибной суп",
-    "price": 100,
+    "price": 48,
     "image": "../images/soups/mushroom.png",
     "description": ""
   }

@@ -421,6 +421,30 @@ footer .footer-right {
     background-color: #ff0000;
 }
 
+.modal-dish-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.dish-image {
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+#modal-dish-name {
+    font-size: 1.2em;
+    margin: 10px 0 5px;
+}
+#modal-dish-price {
+    font-size: 1em;
+    color: #444;
+    margin: 0;
+}
+
+.modal-dish-info .quantity-container {
+    justify-content: center;
+}
+
 .readonly-field {
     display: inline-block;
     width: 150px;

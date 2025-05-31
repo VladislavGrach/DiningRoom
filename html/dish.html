@@ -6,6 +6,7 @@
   <title>Меню</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/constructor.css" />
 </head>
 <body>
 <header>
@@ -27,6 +28,19 @@
 <div id="confirm-modal" class="modal">
   <div class="modal-content">
     <span class="modal-close">×</span>
+    <div class="modal-dish-info">
+      <img id="modal-dish-image" src="" alt="Товар" class="dish-image">
+      <h3 id="modal-dish-name">Название товара</h3>
+      <p id="modal-dish-price">Цена</p><br>
+      <div class="quantity-container">
+        <p>Количество порций: </p>
+        <span class="quantity-value" id="modal-quantity">1</span>
+        <div class="quantity-controls">
+          <button class="quantity-increase">▲</button>
+          <button class="quantity-decrease">▼</button>
+        </div>
+      </div>
+    </div>
     <p>Хотите добавить этот товар в корзину?</p>
     <div class="modal-buttons">
       <button id="modal-confirm-btn">Да</button>

@@ -36,19 +36,25 @@ function displayCategories(categories) {
 }
 
 function updateCartCount() {
-    let cartCount = localStorage.getItem('cartCount');
-    if (!cartCount) {
-        cartCount = 0;
-        localStorage.setItem('cartCount', cartCount);
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        cartCountElement.textContent = totalItems;
     }
-    document.getElementById('cart-count').textContent = cartCount;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+});
 
 // Функция для загрузки истории заказов из localStorage
 function loadOrderHistory() {
-    const history = JSON.parse(localStorage.getItem('orderHistory')) || [];
+    const currentUser = localStorage.getItem('currentUser');
+    let history = JSON.parse(localStorage.getItem('orderHistory')) || [];
+    history = history.filter(order => order.user === currentUser);
     const historyContent = document.querySelector('.history-content');
-    historyContent.innerHTML = ''; // Очищаем текущую историю
+    historyContent.innerHTML = '';
     history.forEach(order => {
         const p = document.createElement('p');
         p.textContent = `${order.id} ${order.date} Итог: ${order.total} руб.`;
@@ -73,7 +79,7 @@ function simulateOrder() {
     addOrderToHistory(orderId, date, total);
 }
 
-// Функция для загрузки истории заказов из localStorage
+// Функция для загрузки истории заказов из localStorage с фильтром по пользователю
 function loadOrderHistory() {
     const currentUser = localStorage.getItem('currentUser');
     let history = JSON.parse(localStorage.getItem('orderHistory')) || [];
@@ -90,14 +96,12 @@ function loadOrderHistory() {
 // Загружаем историю при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     loadOrderHistory();
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    document.querySelector('.cart-count').textContent = cart.length;
+    loadCategories();
+    updateCartCount();
 });
 
-// Загружаем историю при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     loadOrderHistory();
-    // Пример: можно привязать simulateOrder к кнопке
     document.querySelector('.cart-button')?.addEventListener('click', simulateOrder);
 });
 
