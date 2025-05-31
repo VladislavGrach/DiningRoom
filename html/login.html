@@ -10,25 +10,23 @@
 <body>
 <header>
   <img src="../images/logo.png" alt="Логотип ресторана" class="logo">
-  <div class="header-buttons">
-    <button onclick="window.location.href='cart.html'" class="cart-button">Корзина <span class="cart-count">0</span></button>
-    <button onclick="window.location.href='register.html'" class="profile-button">Регистрация</button>
-  </div>
 </header>
 <main>
-  <h1>Вход</h1>
-  <div class="form-group">
-    <label>Псевдоним</label>
-    <input type="text" id="username" placeholder="Введите имя">
+  <div class="auth-container">
+    <h1>Вход</h1>
+    <div class="form-group">
+      <label class="textAuth">Логин</label>
+      <input type="text" id="username" placeholder="Введите имя">
+    </div>
+    <div class="form-group">
+      <label class="textAuth" for="password">Пароль</label>
+      <input type="password" id="password" placeholder="Введите пароль" />
+    </div>
+    <div class="form-group">
+      <button onclick="loginUser()">Войти</button>
+    </div>
+    <p>Нет аккаунта? <a href="register.html">Зарегистрируйтесь</a></p>
   </div>
-  <div class="form-group">
-    <label>Пароль</label>
-    <input type="password" id="password" placeholder="Введите пароль">
-  </div>
-  <div class="form-group">
-    <button onclick="loginUser()">Войти</button>
-  </div>
-  <p>Нет аккаунта? <a href="register.html">Зарегистрируйтесь</a></p>
 </main>
 <script src="../js/auth.js"></script>
 </body>

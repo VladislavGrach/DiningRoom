@@ -13,7 +13,7 @@
     <div class="header-buttons">
         <button onclick="window.location.href='cart.html'" class="cart-button">
       <span class="cart-count-container">
-        <span class="cart-count" id="cart-count">0</span>
+        <span class="cart-count" id="cart-count"></span>
       </span>
             Корзина
         </button>
@@ -25,7 +25,8 @@
     <div class="left-section">
         <div class="avatar-container">
             <img src="../images/profile.png" alt="Profile" class="profile-img">
-            <button class="cng-photo">Обновить аватар</button>
+            <button class="cng-photo" id="change-avatar-btn">Обновить аватар</button>
+            <input type="file" id="avatar-input" accept="image/*" style="display: none;" />
         </div>
     </div>
 
@@ -33,22 +34,25 @@
         <div class="form-group">
             <label>Псевдоним</label>
             <div class="input-wrapper">
-                <input type="text" />
-                <button class="edit-btn">✏️</button>
+                <span id="nickname-text" class="readonly-field"></span>
+                <input id="nickname-input" type="text" style="display: none;">
             </div>
         </div>
         <div class="form-group">
             <label>Пароль</label>
             <div class="input-wrapper">
-                <input type="password" />
-                <button class="edit-btn">✏️</button>
+                <span id="password-placeholder" class="readonly-field">•••••••</span>
+                <form autocomplete="off"><input id="new-password" type="password" style="display: none;"></form>
+                <button id="edit-password" class="edit-btn">✏️</button>
             </div>
         </div>
-        <div class="form-group">
-            <label>Повторите пароль</label>
+
+        <div class="form-group" id="confirm-password-group" style="display: none;">
+            <label>Подтвердите</label>
             <div class="input-wrapper">
-                <input type="password" />
-                <button class="confirm-btn">✔️</button>
+                <form autocomplete="off"><input id="repeat-password" type="password"></form>
+                <button type="button" id="toggle-password" class="edit-btn">👁</button>
+                <button id="save-password" class="confirm-btn">✔️</button>
             </div>
         </div>
     </div>
@@ -70,5 +74,7 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/profile.js"></script>
 </body>
 </html>
