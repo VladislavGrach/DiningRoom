@@ -1,31 +1,31 @@
 [
   {
     "name": "Оливье",
-    "price": 22,
+    "price": 35,
     "image": "../images/snacks/olivier.png",
     "description": ""
   },
   {
     "name": "Цезарь",
-    "price": 48,
+    "price": 50,
     "image": "../images/snacks/caesar.png",
     "description": ""
   },
   {
     "name": "Американка",
-    "price": 25,
+    "price": 48,
     "image": "../images/snacks/american.png",
     "description": ""
   },
   {
     "name": "Школьник",
-    "price": 19,
+    "price": 40,
     "image": "../images/snacks/schoolboy.png",
     "description": ""
   },
   {
-    "name": "Салат крабовый",
-    "price": 24,
+    "name": "Курчавый краб",
+    "price": 45,
     "image": "../images/snacks/crab.png",
     "description": ""
   },

@@ -7,13 +7,13 @@
   },
   {
     "name": "Напиток вишнёвый",
-    "price": 14,
+    "price": 15,
     "image": "../images/drinks/cherry_drink.png",
     "description": ""
   },
   {
     "name": "Напиток яблочный",
-    "price": 14,
+    "price": 15,
     "image": "../images/drinks/apple_drink.png",
     "description": ""
   },
@@ -25,13 +25,13 @@
   },
   {
     "name": "Вода бутилированная негазированная",
-    "price": 34,
+    "price": 35,
     "image": "../images/drinks/water_bottle.png",
     "description": ""
   },
   {
     "name": "Вода бутилированная газированная",
-    "price": 34,
+    "price": 35,
     "image": "../images/drinks/water_bottle_gaz.png",
     "description": ""
   }

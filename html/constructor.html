@@ -12,13 +12,13 @@
 <header>
     <img src="../images/logo.png" alt="Логотип ресторана" onclick="window.location.href='../index.html'" class="logo">
     <div class="header-buttons">
-        <button onclick="window.location.href='html/cart.html'" class="cart-button">
+        <button onclick="window.location.href='../html/cart.html'" class="cart-button">
        <span class="cart-count-container">
           <span class="cart-count" id="cart-count">0</span>
        </span>
             Корзина
         </button>
-        <button onclick="window.location.href='html/profile.html'" class="profile-button">Профиль</button>
+        <button onclick="window.location.href='../html/profile.html'" class="profile-button">Профиль</button>
     </div>
 </header>
 <main>
@@ -30,114 +30,27 @@
         <div class="dish-options">
             <div class="options-row">
                 <div class="option-column">
-                    <div class="option-group">
+                    <div class="option-group" id="garnish-options">
                         <h2>Гарнир</h2>
-                        <div class="option">
-                            <label><input type="checkbox" name="garnish" value="пюре"> Пюре</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="garnish" value="рис"> Рис</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="garnish" value="гречка"> Гречка</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="garnish" value="макароны"> Макароны</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="option-column">
-                    <div class="option-group">
+                    <div class="option-group" id="main-options">
                         <h2>Основное</h2>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="бризоль"> Бризоль</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="бифштекс"> Бифштекс</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="мясо по французски"> Мясо по-французски</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option">
-                            <label><input type="checkbox" name="main" value="курица с ананасами"> Курица с ананасами</label>
-                            <div class="quantity-container">
-                                <span class="quantity-value">1</span>
-                                <div class="quantity-controls">
-                                    <button class="quantity-increase">▲</button>
-                                    <button class="quantity-decrease">▼</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="sauce-options">
-                <div class="option-group">
+                <div class="option-group" id="sauce-options">
                     <h2>Соус, масло?</h2>
-                    <div class="option">
-                        <label><input type="radio" name="sauce" value="соус"> Соус!</label>
-                    </div>
-                    <div class="option">
-                        <label><input type="radio" name="sauce" value="масло"> Масло!</label>
-                    </div>
-                    <div class="option">
-                        <label><input type="radio" name="sauce" value="нет" checked> Нет, спасибо!</label>
-                    </div>
                 </div>
             </div>
             <button id="save-dish">Сохранить блюдо</button>
         </div>
     </div>
 </main>
+
+<!-- Модальное окно -->
 <div id="confirm-modal" class="modal">
     <div class="modal-content">
         <span class="modal-close">×</span>
@@ -148,6 +61,7 @@
         </div>
     </div>
 </div>
+
 <footer>
     <div class="footer-left">
         <img src="/images/logoFooter.png" alt="Логотип" class="footer-logo">
@@ -156,6 +70,7 @@
         г. Ярославль, ул. Союзная, д. 144
     </div>
 </footer>
+
 <script src="../js/constructor.js"></script>
 </body>
 </html>

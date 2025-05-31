@@ -1,175 +1,150 @@
-class CustomDish {
-    constructor(garnishes, mains, sauce) {
-        this.garnishes = garnishes; // Объект {name: quantity}
-        this.mains = mains;         // Объект {name: quantity}
-        this.sauce = sauce;         // Соус/масло/нет
-        this.id = Date.now();       // Уникальный ID
-        this.name = "Кастомное второе"; // Название для корзины
-        this.price = this.calculatePrice(); // Рассчитываем цену
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('../data/constructor.json')
+        .then(response => response.json())
+        .then(data => {
+            buildOptions(data);
+            initSaveHandler();
+        })
+        .catch(error => console.error('Ошибка загрузки JSON:', error));
+});
 
-    calculatePrice() {
-        // Пример расчета цены: 100 руб за каждый гарнир и 200 руб за каждую основу
-        const garnishPrice = Object.values(this.garnishes).reduce((sum, qty) => sum + qty * 100, 0);
-        const mainPrice = Object.values(this.mains).reduce((sum, qty) => sum + qty * 200, 0);
-        const saucePrice = this.sauce === "нет" ? 0 : 30; // 30 руб за соус или масло
-        return garnishPrice + mainPrice + saucePrice;
-    }
+function buildOptions(data) {
+    buildOptionGroup('garnish-options', data.garnish, 'garnish');
+    buildOptionGroup('main-options', data.main, 'main');
+    buildSauceOptions('sauce-options', data.sauce);
 }
 
-function updateCartCount() {
-    const customDishes = JSON.parse(localStorage.getItem('customDishes') || '[]');
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    const cartCountElement = document.getElementById('cart-count');
-    if (cartCountElement) {
-        // Подсчет количества порций для customDishes
-        const customTotal = customDishes.reduce((sum, dish) => {
-            const garnishQty = Object.values(dish.garnishes).reduce((s, q) => s + q, 0);
-            const mainQty = Object.values(dish.mains).reduce((s, q) => s + q, 0);
-            return sum + garnishQty + mainQty;
-        }, 0);
-        // Подсчет количества порций для cartItems
-        const cartTotal = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        // Общее количество порций
-        const totalItems = customTotal + cartTotal;
-        cartCountElement.textContent = totalItems;
-    }
-}
+function buildOptionGroup(containerId, items, groupName) {
+    const container = document.getElementById(containerId);
+    items.forEach(item => {
+        const option = document.createElement('div');
+        option.className = 'option';
 
-function initializeQuantities() {
-    document.querySelectorAll('.option').forEach(option => {
-        const quantityContainer = option.querySelector('.quantity-container');
-        const decreaseBtn = quantityContainer.querySelector('.quantity-decrease');
-        const increaseBtn = quantityContainer.querySelector('.quantity-increase');
-        const quantityValue = option.querySelector('.quantity-value');
+        const label = document.createElement('label');
+        label.innerHTML = `<input type="checkbox" name="${groupName}" value="${item.name}" data-price="${item.price}"> ${item.name}`;
+        option.appendChild(label);
 
-        if (!quantityValue || !decreaseBtn || !increaseBtn) {
-            console.error('Не найдены элементы управления количеством:', option);
-            return;
-        }
+        const quantityContainer = document.createElement('div');
+        quantityContainer.className = 'quantity-container';
 
-        decreaseBtn.addEventListener('click', () => {
-            let value = parseInt(quantityValue.textContent);
-            if (value > 1) { // Минимальное значение 1
-                quantityValue.textContent = value - 1;
-            }
+        const quantityValue = document.createElement('span');
+        quantityValue.className = 'quantity-value';
+        quantityValue.textContent = '0';
+        quantityContainer.appendChild(quantityValue);
+
+        const controls = document.createElement('div');
+        controls.className = 'quantity-controls';
+
+        const up = document.createElement('button');
+        up.className = 'quantity-increase';
+        up.textContent = '▲';
+        up.addEventListener('click', () => {
+            quantityValue.textContent = parseInt(quantityValue.textContent) + 1;
         });
 
-        increaseBtn.addEventListener('click', () => {
-            let value = parseInt(quantityValue.textContent);
-            quantityValue.textContent = value + 1;
+        const down = document.createElement('button');
+        down.className = 'quantity-decrease';
+        down.textContent = '▼';
+        down.addEventListener('click', () => {
+            const current = parseInt(quantityValue.textContent);
+            if (current > 0) quantityValue.textContent = current - 1;
         });
+
+        controls.appendChild(up);
+        controls.appendChild(down);
+        quantityContainer.appendChild(controls);
+        option.appendChild(quantityContainer);
+
+        container.appendChild(option);
     });
 }
 
-function showConfirmModal(dish) {
-    console.log('Открытие модального окна для блюда:', dish);
+function buildSauceOptions(containerId, sauces) {
+    const container = document.getElementById(containerId);
+    sauces.forEach((sauce, i) => {
+        const option = document.createElement('div');
+        option.className = 'option';
 
+        const label = document.createElement('label');
+        label.innerHTML = `
+            <input type="radio" name="sauce" value="${sauce.name}" data-price="${sauce.price}" ${sauce.name.toLowerCase() === 'нет' ? 'checked' : ''}> 
+            ${sauce.name}
+        `;
+        option.appendChild(label);
+        container.appendChild(option);
+    });
+}
+
+function initSaveHandler() {
     const modal = document.getElementById('confirm-modal');
+    const saveButton = document.getElementById('save-dish');
     const confirmBtn = document.getElementById('modal-confirm-btn');
     const cancelBtn = document.getElementById('modal-cancel-btn');
     const closeBtn = document.querySelector('.modal-close');
 
-    if (!modal || !confirmBtn || !cancelBtn || !closeBtn) {
-        console.error('Не найдены элементы модального окна:', { modal, confirmBtn, cancelBtn, closeBtn });
-        return;
-    }
+    saveButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
 
-    modal.style.display = 'block';
-    console.log('Модальное окно отображено, display:', modal.style.display);
-    console.log('Стили модального окна:', window.getComputedStyle(modal).display);
-
-    // Обработчик для кнопки "Да"
-    const confirmHandler = () => {
-        console.log('Подтверждение: блюдо добавляется в корзину');
-        saveDishToCart(dish);
+    cancelBtn.addEventListener('click', () => {
         modal.style.display = 'none';
-        confirmBtn.removeEventListener('click', confirmHandler);
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    confirmBtn.addEventListener('click', () => {
+        const dish = collectSelectedDish();
+        addToCart(dish);
+        modal.style.display = 'none';
+    });
+
+    updateCartCount();
+}
+
+function collectSelectedDish() {
+    const dish = {
+        name: 'Второе',
+        components: [],
+        quantity: 1,
+        price: 0,
+        image: '/images/categories/второе.png' // <- путь к статическому изображению
     };
 
-    // Обработчик для кнопки "Нет" и крестика
-    const cancelHandler = () => {
-        console.log('Отмена: модальное окно закрывается');
-        modal.style.display = 'none';
-        confirmBtn.removeEventListener('click', confirmHandler);
-    };
+    ['garnish', 'main'].forEach(group => {
+        document.querySelectorAll(`input[name="${group}"]:checked`).forEach(input => {
+            const name = input.value;
+            const price = parseInt(input.dataset.price || '0');
+            const quantity = parseInt(input.closest('.option').querySelector('.quantity-value').textContent);
 
-    confirmBtn.addEventListener('click', confirmHandler);
-    cancelBtn.addEventListener('click', cancelHandler);
-    closeBtn.addEventListener('click', cancelHandler);
-
-    // Закрытие модального окна при клике вне контента
-    modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            console.log('Закрытие модального окна кликом вне контента');
-            modal.style.display = 'none';
-            confirmBtn.removeEventListener('click', confirmHandler);
-        }
-    });
-}
-
-function saveDish() {
-    console.log('Функция saveDish вызвана');
-
-    const garnishes = {};
-    document.querySelectorAll('input[name="garnish"]:checked').forEach(input => {
-        const quantity = parseInt(input.closest('.option').querySelector('.quantity-value').textContent);
-        garnishes[input.value] = quantity;
+            dish.components.push({ category: group, name, quantity, price });
+            dish.price += price * quantity;
+        });
     });
 
-    const mains = {};
-    document.querySelectorAll('input[name="main"]:checked').forEach(input => {
-        const quantity = parseInt(input.closest('.option').querySelector('.quantity-value').textContent);
-        mains[input.value] = quantity;
-    });
-
-    const sauce = document.querySelector('input[name="sauce"]:checked')?.value;
-
-    if (!sauce) {
-        console.error('Соус не выбран');
-        alert('Пожалуйста, выберите соус!');
-        return;
+    const selectedSauce = document.querySelector('input[name="sauce"]:checked');
+    if (selectedSauce && selectedSauce.value.toLowerCase() !== 'нет') {
+        const name = selectedSauce.value;
+        const price = parseInt(selectedSauce.dataset.price || '0');
+        dish.components.push({ category: 'sauce', name, quantity: 1, price });
+        dish.price += price;
     }
 
-    if (Object.keys(garnishes).length === 0 || Object.keys(mains).length === 0) {
-        console.log('Ошибка: не выбран гарнир или основа');
-        alert('Выберите хотя бы один гарнир и одну основу!');
-        return;
-    }
-
-    const dish = new CustomDish(garnishes, mains, sauce);
-    console.log('Блюдо создано:', dish);
-    showConfirmModal(dish);
+    return dish;
 }
 
-function saveDishToCart(dish) {
-    console.log('Сохранение блюда в корзину:', dish);
-    const customDishes = JSON.parse(localStorage.getItem('customDishes') || '[]');
-    customDishes.push(dish);
-    localStorage.setItem('customDishes', JSON.stringify(customDishes));
-    updateCartCount();
-    alert('Блюдо сохранено в корзину!');
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Страница загружена, инициализация...');
-    initializeQuantities();
-    const saveDishButton = document.getElementById('save-dish');
-    if (saveDishButton) {
-        saveDishButton.addEventListener('click', saveDish);
-        console.log('Обработчик для кнопки "Сохранить блюдо" установлен');
-    } else {
-        console.error('Кнопка с id="save-dish" не найдена');
-    }
-    updateCartCount();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Загрузка constructor.html, обновление счетчика...');
-    updateCartCount();
-    // Добавляем отладочную информацию
+function addToCart(dish) {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    const customDishes = JSON.parse(localStorage.getItem('customDishes') || '[]');
-    console.log('cartItems:', cartItems);
-    console.log('customDishes:', customDishes);
-});
+    cartItems.push(dish);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+    alert('Блюдо добавлено в корзину!');
+}
+
+function updateCartCount() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const count = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    document.getElementById('cart-count').textContent = count;
+}
