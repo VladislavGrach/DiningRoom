@@ -13,14 +13,33 @@ function loadCart() {
 
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
+
+        let componentsHTML = '';
+        if (item.components && Array.isArray(item.components)) {
+            componentsHTML = `
+        <div class="dish-components">
+            <p><strong>Состав:</strong></p>
+            <ul>
+                ${item.components.map(component => {
+                const compTotal = component.price * component.quantity;
+                return `<li>${component.name} — ${component.price} руб. x ${component.quantity} = ${compTotal} руб.</li>`;
+            }).join('')}
+            </ul>
+        </div>
+    `;
+        }
+
         cartItem.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <div>
                 <p class="dish-name">${item.name}</p>
-                <p class="dish-price">${item.price} руб. x ${quantity} = ${itemTotalPrice} руб.</p>
+                ${componentsHTML}
+                <p class="dish-price"><strong>Итог:</strong> ${item.price} руб. x ${quantity} = ${itemTotalPrice} руб.</p>
             </div>
             <button class="remove-item" data-index="${index}">Удалить</button>
         `;
+
+
         cartItems.appendChild(cartItem);
     });
 

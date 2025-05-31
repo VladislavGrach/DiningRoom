@@ -20,8 +20,15 @@ function buildOptionGroup(containerId, items, groupName) {
         const option = document.createElement('div');
         option.className = 'option';
 
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = groupName;
+        checkbox.value = item.name;
+        checkbox.dataset.price = item.price;
+
         const label = document.createElement('label');
-        label.innerHTML = `<input type="checkbox" name="${groupName}" value="${item.name}" data-price="${item.price}"> ${item.name}`;
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(` ${item.name}`));
         option.appendChild(label);
 
         const quantityContainer = document.createElement('div');
@@ -38,16 +45,40 @@ function buildOptionGroup(containerId, items, groupName) {
         const up = document.createElement('button');
         up.className = 'quantity-increase';
         up.textContent = '▲';
-        up.addEventListener('click', () => {
-            quantityValue.textContent = parseInt(quantityValue.textContent) + 1;
-        });
 
         const down = document.createElement('button');
         down.className = 'quantity-decrease';
         down.textContent = '▼';
+
+        // Обработка нажатия на "увеличить"
+        up.addEventListener('click', () => {
+            let current = parseInt(quantityValue.textContent);
+            current++;
+            quantityValue.textContent = current;
+            if (current > 0 && !checkbox.checked) {
+                checkbox.checked = true;
+            }
+        });
+
+        // Обработка нажатия на "уменьшить"
         down.addEventListener('click', () => {
-            const current = parseInt(quantityValue.textContent);
-            if (current > 0) quantityValue.textContent = current - 1;
+            let current = parseInt(quantityValue.textContent);
+            if (current > 0) {
+                current--;
+                quantityValue.textContent = current;
+                if (current === 0) {
+                    checkbox.checked = false;
+                }
+            }
+        });
+
+        // Обработка нажатия на чекбокс
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked && parseInt(quantityValue.textContent) === 0) {
+                quantityValue.textContent = '1';
+            } else if (!checkbox.checked) {
+                quantityValue.textContent = '0';
+            }
         });
 
         controls.appendChild(up);
@@ -58,6 +89,7 @@ function buildOptionGroup(containerId, items, groupName) {
         container.appendChild(option);
     });
 }
+
 
 function buildSauceOptions(containerId, sauces) {
     const container = document.getElementById(containerId);
@@ -96,6 +128,10 @@ function initSaveHandler() {
 
     confirmBtn.addEventListener('click', () => {
         const dish = collectSelectedDish();
+        if (!dish) {
+            alert('Пожалуйста, выберите хотя бы один компонент перед сохранением.');
+            return;
+        }
         addToCart(dish);
         modal.style.display = 'none';
     });
@@ -109,7 +145,7 @@ function collectSelectedDish() {
         components: [],
         quantity: 1,
         price: 0,
-        image: '/images/categories/второе.png' // <- путь к статическому изображению
+        image: '/images/categories/второе.png'
     };
 
     ['garnish', 'main'].forEach(group => {
@@ -118,8 +154,10 @@ function collectSelectedDish() {
             const price = parseInt(input.dataset.price || '0');
             const quantity = parseInt(input.closest('.option').querySelector('.quantity-value').textContent);
 
-            dish.components.push({ category: group, name, quantity, price });
-            dish.price += price * quantity;
+            if (quantity > 0) {
+                dish.components.push({ category: group, name, quantity, price });
+                dish.price += price * quantity;
+            }
         });
     });
 
@@ -131,9 +169,13 @@ function collectSelectedDish() {
         dish.price += price;
     }
 
+    // Проверка: ничего не выбрано
+    if (dish.components.length === 0) {
+        return null;
+    }
+
     return dish;
 }
-
 
 function addToCart(dish) {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
