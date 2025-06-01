@@ -3,6 +3,7 @@ body {
     background-color: #ffffff;
     margin: 0;
     padding: 0;
+    font-size: 16px; /* Увеличиваем базовый размер шрифта (было 14px неявно) */
 }
 
 header {
@@ -36,15 +37,7 @@ header {
     align-items: center;
 }
 
-.cart-button {
-    background-color: #007bff; /* Синий фон для "Корзина" */
-}
-
-.profile-button {
-    background-color: #007bff; /* Синий фон для "Профиль" */
-}
-
-.cart-button .cart-count-container {
+.cart-count-container {
     background-color: #ff0000; /* Красный фон для счетчика */
     color: #ffffff;
     border-radius: 50%;
@@ -206,11 +199,16 @@ footer .footer-right {
     text-align: right;
     margin-right: 40px;
 }
+
 .main-section {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     padding: 40px 20px;
+    margin: 0 auto; /* Центрируем */
+    gap: 10px; /* Минимальный промежуток между секциями */
+    max-width: 1200px; /* Ограничиваем максимальную ширину */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    padding-left: 50px; /* Минимальный отступ слева для визуального баланса */
 }
 
 .left-section {
@@ -234,7 +232,7 @@ footer .footer-right {
 .form-group label {
     width: 120px;
     color: #252525;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .form-group input {
@@ -275,15 +273,11 @@ footer .footer-right {
 
 .middle-section {
     flex-grow: 1;
-    margin-right: 20px;
-}
-
-.right-section {
-    width: 200em;
+    margin-right: 40px;
 }
 
 .history-title {
-    font-size: 14px;
+    font-size: 18px;
     color: #252525;
     margin-bottom: 10px;
     text-align: center;
@@ -301,7 +295,7 @@ footer .footer-right {
 
 .history-content p {
     margin: 5px 0;
-    font-size: 12px;
+    font-size: 14px;
     color: #252525;
     padding: 10px;
     background-color: #e0e0e0;
@@ -323,6 +317,8 @@ footer .footer-right {
     cursor: pointer;
     margin-top: 10px;
     font-family: 'JetBrains Mono', monospace;
+    width: 150px;
+    text-align: center;
 }
 
 .cng-photo:hover {
@@ -384,6 +380,7 @@ footer .footer-right {
     border-radius: 8px;
     position: relative;
     text-align: center;
+    top: -5%;
 }
 
 .modal-close {
@@ -554,4 +551,69 @@ footer .footer-right {
     margin-bottom: 8px; /* Отступ снизу */
     font-size: 16px;
     font-family: 'JetBrains Mono', monospace;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #333;
+}
+
+#sort-select {
+    padding: 6px 10px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+    color: #333;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='30,50 70,90 110,50' stroke='%23666' stroke-width='20' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    appearance: none;
+    min-width: 215px;
+}
+
+#sort-select:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.left-section {
+    text-align: left;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.middle-section {
+    width: 400px;
+    flex-shrink: 0;
+    margin-right: 0;
+}
+
+.right-section {
+    flex-shrink: 0;
+}
+
+.remove-photo {
+    background-color: #ff4444; /* Красный цвет для кнопки удаления */
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    width: 150px;
+    text-align: center;
+}
+
+.remove-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

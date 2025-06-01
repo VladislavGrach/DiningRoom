@@ -1,22 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log('DOMContentLoaded сработал');
 
     // Проверяем базовые элементы
     const loginDisplay = document.getElementById("nickname-text");
     const currentUser = localStorage.getItem("currentUser");
-    console.log('currentUser:', currentUser);
     if (loginDisplay && currentUser) {
         loginDisplay.textContent = currentUser;
     } else {
-        console.log('loginDisplay или currentUser не найдены:', { loginDisplay, currentUser });
     }
 
     // Проверяем logout-button
     const logoutButton = document.getElementById("logout-button");
     if (logoutButton) {
-        console.log('logout-button найден');
         logoutButton.addEventListener("click", () => {
-            console.log('logout-button нажат');
             if (confirm("Вы действительно хотите выйти?")) {
                 localStorage.removeItem("currentUser");
                 window.location.href = "login.html";
@@ -35,16 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmGroup = document.getElementById("confirm-password-group");
     const toggleBtn = document.getElementById("toggle-password");
 
-    console.log('Элементы для смены пароля:', {
-        passwordPlaceholder,
-        newPasswordInput,
-        repeatPasswordInput,
-        editPasswordBtn,
-        savePasswordBtn,
-        confirmGroup,
-        toggleBtn
-    });
-
     if (!savePasswordBtn) {
         console.error('Кнопка с id="save-password" не найдена');
         return;
@@ -57,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Обработчик для кнопки "Сохранить"
     savePasswordBtn.addEventListener("click", async () => {
-        console.log('Кнопка "save-password" нажата');
         try {
             const newPassword = newPasswordInput.value.trim();
             const repeatPassword = repeatPasswordInput.value.trim();
@@ -97,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Показать поля
     if (editPasswordBtn) {
         editPasswordBtn.addEventListener("click", () => {
-            console.log('Кнопка "edit-password" нажата');
             passwordPlaceholder.style.display = "none";
             newPasswordInput.style.display = "inline-block";
             editPasswordBtn.style.display = "none";
@@ -108,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Показать/скрыть пароль
     if (toggleBtn) {
         toggleBtn.addEventListener("click", () => {
-            console.log('Кнопка "toggle-password" нажата');
             const isHidden = newPasswordInput.type === "password";
             newPasswordInput.type = isHidden ? "text" : "password";
             repeatPasswordInput.type = isHidden ? "text" : "password";
@@ -119,6 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const avatarImg = document.querySelector(".profile-img");
     const changeAvatarBtn = document.getElementById("change-avatar-btn");
     const avatarInput = document.getElementById("avatar-input");
+    const removeAvatarBtn = document.getElementById("remove-avatar-btn");
+    const removeAvatarModal = document.getElementById("remove-avatar-modal");
+    const modalConfirmBtn = document.getElementById("modal-confirm-btn");
+    const modalCancelBtn = document.getElementById("modal-cancel-btn");
+    const modalCloseBtn = document.getElementById("modal-close");
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const userData = users.find(u => u.username === currentUser);
@@ -149,4 +136,45 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.readAsDataURL(file);
     });
 
+    // Обработчик для кнопки удаления аватара
+    if (removeAvatarBtn) {
+        removeAvatarBtn.addEventListener("click", () => {
+            // Показываем модальное окно
+            removeAvatarModal.style.display = "block";
+        });
+    } else {
+        console.error('Кнопка с id="remove-avatar-btn" не найдена');
+    }
+
+    // Обработчики для модального окна
+    if (modalConfirmBtn) {
+        modalConfirmBtn.addEventListener("click", () => {
+            avatarImg.src = "../images/profile/profile.png"; // Сбрасываем на стандартное изображение
+            if (userData) {
+                userData.avatar = "../images/profile/profile.png";
+                const updatedUsers = users.map(u => u.username === currentUser ? userData : u);
+                localStorage.setItem("users", JSON.stringify(updatedUsers));
+            }
+            removeAvatarModal.style.display = "none";
+        });
+    }
+
+    if (modalCancelBtn) {
+        modalCancelBtn.addEventListener("click", () => {
+            removeAvatarModal.style.display = "none";
+        });
+    }
+
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener("click", () => {
+            removeAvatarModal.style.display = "none";
+        });
+    }
+
+    // Закрытие модального окна при клике вне его
+    removeAvatarModal.addEventListener("click", (event) => {
+        if (event.target === removeAvatarModal) {
+            removeAvatarModal.style.display = "none";
+        }
+    });
 });

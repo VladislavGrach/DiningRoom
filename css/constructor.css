@@ -72,6 +72,7 @@ h1 {
 .constructor-container {
     display: flex;
     gap: 30px;
+    margin-left: -44px;
 }
 
 .dish-image {
@@ -93,7 +94,7 @@ h1 {
 
 .options-row {
     display: flex;
-    gap: 20px;
+    gap: 70px;
 }
 
 .option-column {
@@ -219,4 +220,39 @@ footer .footer-right {
     max-width: 300px;
     text-align: right;
     margin-right: 40px;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #333;
+}
+
+.sort-select {
+    padding: 6px 10px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+    color: #333;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='30,50 70,90 110,50' stroke='%23666' stroke-width='20' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    appearance: none;
+    min-width: 215px;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.modal-content {
+    top: -13%;
 }

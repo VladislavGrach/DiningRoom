@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Меню</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/main.css" />
   <link rel="stylesheet" href="../css/constructor.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+
 </head>
 <body>
 <header>
@@ -23,6 +24,20 @@
 </header>
 <main>
   <h1 id="category-title">Загрузка</h1>
+
+  <!-- Сортировка -->
+  <div class="sort-controls">
+    <label for="sort-select">Сортировать по:</label>
+    <select id="sort-select">
+      <option value="default">Без сортировки</option>
+      <option value="name-asc">Названию (А–Я)</option>
+      <option value="name-desc">Названию (Я–А)</option>
+      <option value="price-asc">Цене (по возрастанию)</option>
+      <option value="price-desc">Цене (по убыванию)</option>
+    </select>
+  </div>
+  <br/>
+
   <div id="dishes-container" class="categories-grid"></div>
 </main>
 <div id="confirm-modal" class="modal">

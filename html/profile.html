@@ -12,9 +12,9 @@
     <img src="../images/logo/logo.png" alt="Логотип ресторана" onclick="window.location.href='../index.html'" class="logo" />
     <div class="header-buttons">
         <button onclick="window.location.href='cart.html'" class="cart-button">
-      <span class="cart-count-container">
-        <span class="cart-count" id="cart-count"></span>
-      </span>
+            <span class="cart-count-container">
+                <span class="cart-count" id="cart-count"></span>
+            </span>
             Корзина
         </button>
         <button onclick="window.location.href='profile.html'" class="profile-button">Профиль</button>
@@ -24,8 +24,9 @@
 <div class="main-section">
     <div class="left-section">
         <div class="avatar-container">
-            <img src="../images/profile/profile.png" alt="Profile" class="profile-img">
+            <img src="../images/profile/profile.png" alt="Profile" class="profile-img" id="profile-img">
             <button class="cng-photo" id="change-avatar-btn">Обновить аватар</button>
+            <button class="remove-photo" id="remove-avatar-btn">Удалить аватар</button>
             <input type="file" id="avatar-input" accept="image/*" style="display: none;" />
         </div>
     </div>
@@ -60,6 +61,17 @@
     <div class="right-section">
         <div class="history-title">История заказов</div>
         <div class="history-content">
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="remove-avatar-modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <p>Вы действительно хотите удалить аватар?</p>
+        <div class="modal-buttons">
+            <button id="modal-confirm-btn">Да</button>
+            <button id="modal-cancel-btn">Нет</button>
         </div>
     </div>
 </div>

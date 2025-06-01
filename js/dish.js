@@ -6,22 +6,19 @@ const dictionary = {
     "bakery": "Выпечка",
     "drinks": "Напитки",
     "other": "Другое",
-}
+};
+
+let currentDishes = [];
 
 async function loadDishes() {
     try {
         const path = `../data/${categoryParam}.json`;
-        console.log('Загрузка:', path);
-
         const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const dishes = await response.json();
+        currentDishes = await response.json();
         document.getElementById('category-title').textContent = dictionary[categoryParam];
-        displayDishes(dishes);
+        displayDishes(currentDishes);
     } catch (err) {
         console.error('Ошибка загрузки блюд:', err);
         document.getElementById('category-title').textContent = 'Категория не найдена';
@@ -44,13 +41,33 @@ function displayDishes(dishes) {
     });
 }
 
+function sortAndDisplayDishes(criteria) {
+    let sorted = [...currentDishes];
+    switch (criteria) {
+        case 'name-asc':
+            sorted.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'name-desc':
+            sorted.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case 'price-asc':
+            sorted.sort((a, b) => a.price - b.price);
+            break;
+        case 'price-desc':
+            sorted.sort((a, b) => b.price - a.price);
+            break;
+        default:
+            break;
+    }
+    displayDishes(sorted);
+}
+
 function showConfirmModal(dish) {
     const modal = document.getElementById('confirm-modal');
     const confirmBtn = document.getElementById('modal-confirm-btn');
     const cancelBtn = document.getElementById('modal-cancel-btn');
     const closeBtn = document.querySelector('.modal-close');
 
-    // Заполняем модальное окно данными о товаре
     const dishImage = document.getElementById('modal-dish-image');
     const dishName = document.getElementById('modal-dish-name');
     const dishPrice = document.getElementById('modal-dish-price');
@@ -62,9 +79,8 @@ function showConfirmModal(dish) {
     dishImage.alt = dish.name;
     dishName.textContent = dish.name;
     dishPrice.textContent = `${dish.price} руб.`;
-    quantityValue.textContent = '1'; // Начальное количество
+    quantityValue.textContent = '1';
 
-    // Обработчики для кнопок увеличения/уменьшения количества
     const updateQuantity = () => {
         let value = parseInt(quantityValue.textContent);
         if (value < 1) {
@@ -88,7 +104,6 @@ function showConfirmModal(dish) {
 
     modal.style.display = 'block';
 
-    // Обработчик для кнопки "Да"
     const confirmHandler = () => {
         const quantity = updateQuantity();
         addToCart(dish, quantity);
@@ -96,7 +111,6 @@ function showConfirmModal(dish) {
         confirmBtn.removeEventListener('click', confirmHandler);
     };
 
-    // Обработчик для кнопки "Нет" и крестика
     const cancelHandler = () => {
         modal.style.display = 'none';
         confirmBtn.removeEventListener('click', confirmHandler);
@@ -106,7 +120,6 @@ function showConfirmModal(dish) {
     cancelBtn.addEventListener('click', cancelHandler);
     closeBtn.addEventListener('click', cancelHandler);
 
-    // Закрытие модального окна при клике вне контента
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = 'none';
@@ -117,7 +130,6 @@ function showConfirmModal(dish) {
 
 function addToCart(dish, quantity) {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    // Создаем копию объекта блюда и добавляем количество
     const dishWithQuantity = { ...dish, quantity };
     cartItems.push(dishWithQuantity);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -127,7 +139,6 @@ function addToCart(dish, quantity) {
 
 function updateCartCount() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    // Суммируем общее количество порций
     const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
     document.getElementById('cart-count').textContent = totalItems;
 }
@@ -135,4 +146,9 @@ function updateCartCount() {
 document.addEventListener('DOMContentLoaded', () => {
     loadDishes();
     updateCartCount();
+
+    const sortSelect = document.getElementById('sort-select');
+    sortSelect.addEventListener('change', (e) => {
+        sortAndDisplayDishes(e.target.value);
+    });
 });

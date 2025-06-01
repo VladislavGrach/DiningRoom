@@ -27,40 +27,79 @@
         <div class="dish-image">
             <img src="/images/other/secondCourse.png" alt="Пример блюда">
         </div>
+
         <div class="dish-options">
             <div class="options-row">
+                <!-- Колонка Гарниров -->
                 <div class="option-column">
-                    <div class="option-group" id="garnish-options">
-                        <h2>Гарнир</h2>
+                    <h2>Гарнир</h2>
+                    <div class="sort-controls">
+                        <label for="sort-garnish">Сортировать по:</label>
+                        <select id="sort-garnish" class="sort-select">
+                            <option value="default">Без сортировки</option>
+                            <option value="name-asc">Названию (А–Я)</option>
+                            <option value="name-desc">Названию (Я–А)</option>
+                            <option value="price-asc">Цене (по возрастанию)</option>
+                            <option value="price-desc">Цене (по убыванию)</option>
+                        </select>
                     </div>
+                    <div class="option-group" id="garnish-options"></div>
                 </div>
+
+                <!-- Колонка Основного -->
                 <div class="option-column">
-                    <div class="option-group" id="main-options">
-                        <h2>Основное</h2>
+                    <h2>Основное</h2>
+                    <div class="sort-controls">
+                        <label for="sort-main">Сортировать по:</label>
+                        <select id="sort-main" class="sort-select">
+                            <option value="default">Без сортировки</option>
+                            <option value="name-asc">Названию (А–Я)</option>
+                            <option value="name-desc">Названию (Я–А)</option>
+                            <option value="price-asc">Цене (по возрастанию)</option>
+                            <option value="price-desc">Цене (по убыванию)</option>
+                        </select>
                     </div>
+                    <div class="option-group" id="main-options"></div>
                 </div>
             </div>
+
             <div class="sauce-options">
                 <div class="option-group" id="sauce-options">
                     <h2>Соус, масло?</h2>
                 </div>
             </div>
+
             <button id="save-dish">Сохранить блюдо</button>
         </div>
     </div>
 </main>
 
-<!-- Модальное окно -->
+<!-- Модальное окно подтверждения -->
 <div id="confirm-modal" class="modal">
     <div class="modal-content">
         <span class="modal-close">×</span>
-        <p>Хотите добавить это блюдо в корзину?</p>
+        <div class="modal-dish-info">
+            <img id="modal-dish-image" src="" alt="Блюдо" class="dish-image">
+            <h3>Вы собрали блюдо:</h3>
+            <ul id="modal-dish-components" class="dish-components-list"></ul>
+            <p class="dish-price">Общая цена: <span id="modal-dish-price">0</span> ₽</p>
+            <div class="quantity-container">
+                <p>Количество порций:</p>
+                <span class="quantity-value" id="modal-quantity">1</span>
+                <div class="quantity-controls">
+                    <button class="quantity-increase">▲</button>
+                    <button class="quantity-decrease">▼</button>
+                </div>
+            </div>
+        </div>
+        <p>Добавить блюдо в корзину?</p>
         <div class="modal-buttons">
             <button id="modal-confirm-btn">Да</button>
             <button id="modal-cancel-btn">Нет</button>
         </div>
     </div>
 </div>
+
 
 <footer>
     <div class="footer-left">

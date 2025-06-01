@@ -71,14 +71,6 @@ function addOrderToHistory(orderId, date, total) {
     loadOrderHistory(); // Обновляем отображение
 }
 
-// Пример вызова (можно привязать к кнопке или другому событию)
-function simulateOrder() {
-    const orderId = `Заказ #${Math.floor(Math.random() * 1000)}`;
-    const date = new Date().toLocaleString();
-    const total = Math.floor(Math.random() * 1000) + 100; // Случайная сумма
-    addOrderToHistory(orderId, date, total);
-}
-
 // Функция для загрузки истории заказов из localStorage с фильтром по пользователю
 function loadOrderHistory() {
     const currentUser = localStorage.getItem('currentUser');

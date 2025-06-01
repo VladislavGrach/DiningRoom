@@ -1,12 +1,13 @@
 // Загрузка корзины из localStorage
 function loadCart() {
-    const cart = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    const cartItems = document.getElementById('cart-items');
-    const cartCount = document.querySelector('.cart-count');
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const customDishes = JSON.parse(localStorage.getItem('customDishes') || '[]');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCountElement = document.querySelector('.cart-count');
     let total = 0;
 
-    cartItems.innerHTML = '';
-    cart.forEach((item, index) => {
+    cartItemsContainer.innerHTML = '';
+    cartItems.forEach((item, index) => {
         const quantity = item.quantity || 1; // Если quantity отсутствует, считаем как 1
         const itemTotalPrice = parseInt(item.price) * quantity;
         total += itemTotalPrice;
@@ -17,16 +18,16 @@ function loadCart() {
         let componentsHTML = '';
         if (item.components && Array.isArray(item.components)) {
             componentsHTML = `
-        <div class="dish-components">
-            <p><strong>Состав:</strong></p>
-            <ul>
-                ${item.components.map(component => {
+                <div class="dish-components">
+                    <p><strong>Состав:</strong></p>
+                    <ul>
+                        ${item.components.map(component => {
                 const compTotal = component.price * component.quantity;
                 return `<li>${component.name} — ${component.price} руб. x ${component.quantity} = ${compTotal} руб.</li>`;
             }).join('')}
-            </ul>
-        </div>
-    `;
+                    </ul>
+                </div>
+            `;
         }
 
         cartItem.innerHTML = `
@@ -39,14 +40,20 @@ function loadCart() {
             <button class="remove-item" data-index="${index}">Удалить</button>
         `;
 
-
-        cartItems.appendChild(cartItem);
+        cartItemsContainer.appendChild(cartItem);
     });
 
     document.getElementById('cart-total').textContent = total;
-    // Считаем общее количество порций
-    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    cartCount.textContent = totalItems;
+
+    // Подсчет общего количества порций
+    const cartTotal = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const customTotal = customDishes.reduce((sum, dish) => {
+        return sum + (dish.components ? dish.components.reduce((s, comp) => s + comp.quantity, 0) : 0);
+    }, 0);
+    const totalItems = cartTotal + customTotal;
+    if (cartCountElement) {
+        cartCountElement.textContent = totalItems;
+    }
 
     // Обработчики для кнопок удаления
     document.querySelectorAll('.remove-item').forEach(button => {
@@ -63,6 +70,20 @@ function showRemoveConfirmModal(index) {
     const confirmBtn = document.getElementById('remove-confirm-btn');
     const cancelBtn = document.getElementById('remove-cancel-btn');
     const closeBtn = document.querySelector('#remove-confirm-modal .modal-close');
+
+    // Получаем информацию о товаре
+    const cart = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const item = cart[index];
+    if (!item) {
+        console.error('Товар не найден:', index);
+        return;
+    }
+
+    // Заполняем модальное окно информацией о товаре
+    document.getElementById('modal-dish-image').src = item.image;
+    document.getElementById('modal-dish-name').textContent = item.name;
+    document.getElementById('modal-dish-price').textContent = `${item.price} руб.`;
+    document.getElementById('modal-quantity').textContent = item.quantity || 1;
 
     modal.style.display = 'block';
 
@@ -87,12 +108,12 @@ function showRemoveConfirmModal(index) {
     closeBtn.addEventListener('click', cancelHandler);
 
     // Закрытие модального окна при клике вне контента
-    window.onclick = function(event) {
+    modal.addEventListener('click', function(event) {
         if (event.target === modal) {
             modal.style.display = 'none';
             confirmBtn.removeEventListener('click', confirmHandler);
         }
-    };
+    });
 }
 
 // Функция для добавления заказа в историю
