@@ -150,7 +150,7 @@ function checkAuth() {
     if (currentUser && window.location.pathname.includes('register.html')) {
         window.location.href = 'profile.html';
     }
-    updateHeader();
+    //updateHeader();
 }
 
 // Обновление шапки в зависимости от авторизации
@@ -179,10 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const eyeOpen = document.getElementById("eye-open");
     const eyeClosed = document.getElementById("eye-closed");
 
-    toggleBtn.addEventListener("click", () => {
-        const isHidden = passwordInput.type === "password";
-        passwordInput.type = isHidden ? "text" : "password";
-        eyeOpen.style.display = isHidden ? "none" : "inline";
-        eyeClosed.style.display = isHidden ? "inline" : "none";
-    });
+    if (passwordInput && toggleBtn && eyeOpen && eyeClosed) {
+        toggleBtn.addEventListener("click", () => {
+            const isHidden = passwordInput.type === "password";
+            passwordInput.type = isHidden ? "text" : "password";
+            eyeOpen.style.display = isHidden ? "none" : "inline";
+            eyeClosed.style.display = isHidden ? "inline" : "none";
+        });
+    }
 });
